@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -13,15 +14,17 @@ func handleConnection(stream net.Conn) {
 	bufReader := bufio.NewReader(stream)
 	first_request_line, err := bufReader.ReadString('\n')
 	check(err)
+	first_request_line = strings.TrimSuffix(first_request_line, "\r\n")
+	fmt.Println("Request: ", first_request_line)
 
 	var statusLine string
 	var filename string
 
 	switch first_request_line {
-	case "GET / HTTP/1.1\n":
+	case "GET / HTTP/1.1": // GET / HTTP/1.1
 		statusLine = "HTTP/1.1 200 OK"
 		filename = "hello.html"
-	case "GET /sleep HTTP/1.1\n":
+	case "GET /sleep HTTP/1.1": // GET /sleep HTTP/1.1
 		time.Sleep(10 * time.Second)
 		statusLine = "HTTP/1.1 200 OK"
 		filename = "hello-sleep.html"
