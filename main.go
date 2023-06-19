@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"net"
-	//lib "github.com/robert-dzikowski/go_webserver/internal/lib"
 )
 
 func main() {
@@ -19,7 +18,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		lib.handleConnection(conn)
+		handleConnection(conn)
 	}
 }
 
