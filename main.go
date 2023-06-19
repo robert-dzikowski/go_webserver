@@ -2,17 +2,14 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net"
 )
 
 func main() {
 	listener, err := net.Listen("tcp", "127.0.0.1:7878")
+	check(err)
 	fmt.Println("Started server at localhost:7878")
 
-	if err != nil {
-		log.Fatal(err)
-	}
 	defer func() {
 		fmt.Println("Closing server...")
 		listener.Close()
@@ -20,9 +17,7 @@ func main() {
 
 	for {
 		conn, err := listener.Accept()
-		if err != nil {
-			log.Fatal(err)
-		}
+		check(err)
 
 		handleConnection(conn)
 	}
