@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	// mypack "gowebserver/internal"
 	"net"
 )
 
@@ -14,6 +15,8 @@ func main() {
 		fmt.Println("Closing server...")
 		listener.Close()
 	}()
+
+	// mypack.Fun()
 
 	for {
 		conn, err := listener.Accept()
