@@ -10,6 +10,12 @@ import (
 	"time"
 )
 
+func returnHandler(stream net.Conn) func() {
+	return func() {
+		handleConnection(stream)
+	}
+}
+
 func handleConnection(stream net.Conn) {
 	bufReader := bufio.NewReader(stream)
 	first_request_line, err := bufReader.ReadString('\n')
