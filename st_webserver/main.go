@@ -1,9 +1,10 @@
 // Single threaded web server
+//
+
 package st_webserver
 
 import (
 	"fmt"
-	// mypack "gowebserver/internal"
 	"net"
 )
 
@@ -16,8 +17,6 @@ func stMain() {
 		fmt.Println("Closing server...")
 		listener.Close()
 	}()
-
-	// mypack.Fun()
 
 	for {
 		conn, err := listener.Accept()

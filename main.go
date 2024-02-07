@@ -25,7 +25,7 @@ func main() {
 	for i := 1; i <= GorNum; i++ {
 		go func(x int) {
 			defer wg.Done()
-			for job := range c {
+			for job := range c { // The for range operation runs until channel is drained
 				fmt.Printf("Received job for goroutine #%d\n", x)
 				job()
 			}
